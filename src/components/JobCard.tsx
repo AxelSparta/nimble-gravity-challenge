@@ -20,8 +20,7 @@ export function JobCard({ job }: { job: Job }) {
 			const { uuid, candidateId, applicationId }: Candidate = await getCandidateData(
 				'axelnicolassparta@gmail.com',
 			)
-			const json = await applyToJob(uuid, job.id, candidateId, event.target.repoUrl.value, applicationId)
-			console.log(json)
+			await applyToJob(uuid, job.id, candidateId, event.target.repoUrl.value, applicationId)
 			setSuccess(true)
 			setTimeout(() => {
 				setSuccess(false)
@@ -39,7 +38,7 @@ export function JobCard({ job }: { job: Job }) {
 
   return (
     <div className="relative border rounded-md p-4 flex flex-col justify-between min-h-52 min-w-44 shadow-lg border-gray-200">
-      <h2>{job.title}</h2>
+      <h2 className='text-lg font-semibold'>Position: {job.title}</h2>
       <form onSubmit={handleApply}>
         <input
           type="url"
